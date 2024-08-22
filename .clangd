@@ -1,0 +1,14 @@
+CompileFlags:
+  Add:
+    - -std=c17
+  Compiler: clang
+
+Diagnostics:
+  UnusedIncludes: Strict
+
+InlayHints:
+  Enabled: true
+  ParameterNames: true
+  DeducedTypes: true
+  Designators: true
+  BlockEnd: true
