@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.28)
+cmake_minimum_required(VERSION 3.22)
 
 project(interpreter VERSION 1.0)
 
@@ -9,4 +9,7 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 endif()
 
-add_executable(interpreter src/main.c)
+add_library(interpreter src/vector.c)
+
+add_executable(vector_test src/vector_test.c)
+target_link_libraries(vector_test interpreter)

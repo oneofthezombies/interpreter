@@ -31,13 +31,13 @@ typedef enum {
   VECTOR_CODE_VECTOR_IS_EMPTY,
 } vector_code;
 
-vector_code vector_create(const int32_t capacity, const int32_t element_size,
+vector_code vector_create(const i32 capacity, const i32 element_size,
                           OUT vector **self);
 vector_code vector_destroy(vector *self);
-vector_code vector_capacity(vector *self, OUT int32_t *capacity);
-vector_code vector_size(vector *self, OUT int32_t *size);
-vector_code vector_element_size(vector *self, OUT int32_t *element_size);
-vector_code vector_at(vector *self, const int32_t index, OUT void **element);
+vector_code vector_capacity(vector *self, OUT i32 *capacity);
+vector_code vector_size(vector *self, OUT i32 *size);
+vector_code vector_element_size(vector *self, OUT i32 *element_size);
+vector_code vector_at(vector *self, const i32 index, OUT void **element);
 vector_code vector_push_back(vector *self, void *element);
 vector_code vector_pop_back(vector *self, OUT void *element);
 

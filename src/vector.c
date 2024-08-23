@@ -5,9 +5,9 @@
 
 typedef struct impl {
   void *data;
-  int32_t capacity;
-  int32_t element_size;
-  int32_t size;
+  i32 capacity;
+  i32 element_size;
+  i32 size;
 } impl;
 
 vector_code _vector_validate_self(vector *self) {
@@ -26,8 +26,8 @@ vector_code _vector_validate_self(vector *self) {
   return VECTOR_CODE_OK;
 }
 
-vector_code vector_create(const int32_t capacity, const int32_t element_size,
-                          OUT vector **self) {
+vector_code vector_create(const i32 capacity, const i32 element_size,
+                          vector **self) {
   if (capacity <= 0) {
     return VECTOR_CODE_INVALID_ARGUMENT_CAPACITY;
   }
@@ -86,7 +86,7 @@ vector_code vector_destroy(vector *self) {
   return VECTOR_CODE_OK;
 }
 
-vector_code vector_capacity(vector *self, OUT int32_t *capacity) {
+vector_code vector_capacity(vector *self, i32 *capacity) {
   const vector_code code = _vector_validate_self(self);
   if (code != VECTOR_CODE_OK) {
     return code;
@@ -100,7 +100,7 @@ vector_code vector_capacity(vector *self, OUT int32_t *capacity) {
   return VECTOR_CODE_OK;
 }
 
-vector_code vector_size(vector *self, OUT int32_t *size) {
+vector_code vector_size(vector *self, i32 *size) {
   const vector_code code = _vector_validate_self(self);
   if (code != VECTOR_CODE_OK) {
     return code;
@@ -114,7 +114,7 @@ vector_code vector_size(vector *self, OUT int32_t *size) {
   return VECTOR_CODE_OK;
 }
 
-vector_code vector_element_size(vector *self, OUT int32_t *element_size) {
+vector_code vector_element_size(vector *self, i32 *element_size) {
   const vector_code code = _vector_validate_self(self);
   if (code != VECTOR_CODE_OK) {
     return code;
@@ -128,7 +128,7 @@ vector_code vector_element_size(vector *self, OUT int32_t *element_size) {
   return VECTOR_CODE_OK;
 }
 
-vector_code vector_at(vector *self, const int32_t index, OUT void **element) {
+vector_code vector_at(vector *self, const i32 index, void **element) {
   const vector_code code = _vector_validate_self(self);
   if (code != VECTOR_CODE_OK) {
     return code;
@@ -158,7 +158,7 @@ vector_code vector_push_back(vector *self, void *element) {
   }
 
   if (self->impl->capacity == self->impl->size) {
-    const int32_t next_capacity = self->impl->capacity * 2;
+    const i32 next_capacity = self->impl->capacity * 2;
     void *data = malloc(next_capacity * self->impl->element_size);
     if (data == NULL) {
       return VECTOR_CODE_ALLOCATION_FAILED_VECTOR_DATA;
@@ -177,7 +177,7 @@ vector_code vector_push_back(vector *self, void *element) {
   return VECTOR_CODE_OK;
 }
 
-vector_code vector_pop_back(vector *self, OUT void *element) {
+vector_code vector_pop_back(vector *self, void *element) {
   const vector_code code = _vector_validate_self(self);
   if (code != VECTOR_CODE_OK) {
     return code;
@@ -191,7 +191,7 @@ vector_code vector_pop_back(vector *self, OUT void *element) {
     return VECTOR_CODE_VECTOR_IS_EMPTY;
   }
 
-  const int32_t last_index = self->impl->size - 1;
+  const i32 last_index = self->impl->size - 1;
   memcpy(element,
          (void *)((u8 *)self->impl->data +
                   (self->impl->element_size * last_index)),

@@ -3,6 +3,7 @@
     "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
     "editor.formatOnSave": true
   },
+  "C_Cpp.intelliSenseEngine": "disabled",
   "clangd.arguments": ["--compile-commands-dir=${workspaceFolder}/build"],
   "files.associations": {
     "*.h": "c"
